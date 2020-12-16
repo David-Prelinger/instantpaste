@@ -9,7 +9,6 @@ DO NOT SHARE SENSITIVE DATA especially in public networks
 # Setup
 
 1. Just like a normal laravel webapp
-2. php artisan storage:link
-3. php artisan websockets:serve
-4. php artisan queue:work
-5. npm run prod
+2. php artisan websockets:serve
+3. php artisan queue:work
+4. npm run prod
