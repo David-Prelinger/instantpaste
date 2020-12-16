@@ -25,7 +25,6 @@ class ProcessChest implements ShouldQueue
     public function __construct(Chest $chest)
     {
         $this->chest = $chest;
-        Log::debug('hi');
     }
 
     /**
@@ -35,7 +34,6 @@ class ProcessChest implements ShouldQueue
      */
     public function handle()
     {
-        Log::debug('hi1');
         event(new UpdatedChest($this->chest));
     }
 }

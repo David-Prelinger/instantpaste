@@ -24,7 +24,6 @@ class UpdatedChest implements ShouldBroadcast
      */
     public function __construct(Chest $chest)
     {
-        logger('hallo?');
         $this->chest = $chest;
     }
 
@@ -35,7 +34,8 @@ class UpdatedChest implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        logger('in channel');
-        return new Channel('chest.' . $this->chest->getId());
+        logger('channel: chest.' . $this->chest->getIpAddress());
+        logger(request()->ip());
+        return new Channel('chest.' . $this->chest->getIpAddress());
     }
 }

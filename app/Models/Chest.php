@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use App\Http\Controllers\ChestController;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\File;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Chest extends Model
 {
@@ -18,8 +21,8 @@ class Chest extends Model
     protected $fillable = [
         'ip_address',
         'text',
-        'file_path'
     ];
+    protected $with = ['files'];
 
     protected $table = 'chests';
 
@@ -31,24 +34,10 @@ class Chest extends Model
     }
 
     /**
-     * @param string $text
+     * @param ?string $text
      */
-    public function setText(string $text) {
+    public function setText(?string $text) {
         $this->text = $text;
-    }
-
-    /**
-     * @param string $filePath
-     */
-    public function setFilePath(string $filePath) {
-       $this->file_path = $filePath;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getFilePath(): ?string {
-        return $this->file_path;
     }
 
     /**
@@ -62,18 +51,25 @@ class Chest extends Model
      * @return string
      */
     public function getIpAddress(): string {
-        return $this->ip_adress;
+        return $this->ip_address;
     }
 
-    public static function getChestByIpAddress(string $ipAddress) {
+    public static function getChestByIpAddress(string $ipAddress): ?Chest {
         $chest = Chest::query()->where('ip_address', '=', $ipAddress)->get()->first();
-        if(is_null($chest)) {
+        /*if(is_null($chest)) {
             $chest = Chest::query()->create(['ip_address'=>$ipAddress]);
-        }
+        }*/
         return $chest;
     }
 
     public function getId() {
         return $this->id;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function files(): HasMany {
+        return $this->hasMany(File::class);
     }
 }

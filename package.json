@@ -10,6 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@types/dropzone": "^5.7.3",
         "axios": "^0.19.2",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
@@ -24,6 +25,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "dropzone": "^5.7.2",
         "laravel-echo": "^1.9.0",
         "pusher-js": "^7.0.2",
         "typescript": "^4.1.2"

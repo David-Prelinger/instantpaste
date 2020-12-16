@@ -17,3 +17,8 @@ use App\Http\Controllers\ChestController;
 
 Route::get('/', [ChestController::class, 'show']);
 Route::post('/', [ChestController::class, 'update']);
+Route::get('/files/{fileName}', [ChestController::class, 'getFile'])
+    ->where(['fileName' => '.*'])->name('storage.file');
+Route::get('/thumbnails/{fileName}', [ChestController::class, 'getThumbnail'])
+    ->where(['fileName' => '.*']);
+Route::delete('/delete', [ChestController::class, 'delete']);

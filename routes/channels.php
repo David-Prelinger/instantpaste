@@ -18,7 +18,6 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('chest.{id}', function ($id) {
-    logger('haha');
-    return true;
+Broadcast::channel('chest.{ip}', function ($ip) {
+    return request()->ip() == $ip;
 });
